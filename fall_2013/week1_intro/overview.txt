@@ -1,0 +1,12 @@
+-Went over basics of competition format
+
+-went over pseudocoding
+
+-two problems
+	
+	quick change
+  http://www.acmgnyr.org/year2006/a.pdf
+		sol   http://www.acmgnyr.org/year2006/a.cpp
+	candy sharing 
+http://www.acmgnyr.org/year2003/b.pdf
+		sol   http://www.acmgnyr.org/year2003/b.cpp
