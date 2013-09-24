@@ -1,0 +1,117 @@
+Graph Implementation Cheat sheet (updated 10/2)
+Victoria Wu
+Adjacency List
+----------------------------------------------------
+#include <iostream>
+#include <map>
+#include <vector>	
+using namespace std;
+
+int main()	{
+
+	map <string, vector <string> >	adjList;
+	map <string, vector <string> >:: iterator it = adjList.begin(); 
+	
+	vector<string> order;	//Because maps are unordered, if you wish to 
+							//preserve order, must do so outside	
+
+	vector<string> neighbors;
+	vector<string> :: iterator neigh;
+	neighbors.push_back("2");
+	neighbors.push_back("5");
+
+	adjList.insert(it, pair<string, vector<string> > ("1", neighbors) );
+	adjList["1"] = neighbors;	//adding a duplicate will do nothing
+	order.push_back("1");
+	
+	//Display contents of the graph
+	for(it = adjList.begin(); it!= adjList.end(); it++)
+	{
+		//print out the key
+		cout << "[" << it->first  << "]"<< " ->";
+		
+		//Print out the neighbors
+		for(neigh = it->second.begin(); neigh != it->second.end(); neigh++)
+		{
+			cout << " " << *neigh;
+		}
+		cout << endl;
+	}	
+}
+
+Adjacency Matrix­
+----------------------------------------------------
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()	{
+	const int vertices = 6;		
+	int A = 1;
+	int B = 2;
+	int w = 5;
+	
+	//Using a regular matrix
+	int adMatrix[vertices][vertices];	//from, to = row, col
+	adMatrix[A][B] = w;
+	adMatrix[B][A] = w;	//because it's an undirected graph!
+	
+	//Or using vector of vectors
+	vector< vector <int > > vec (vertices, vector<int> (vertices) );
+	vec[A][B] = w;
+	vec[B][A] = w;
+	
+}
+
+
+Incidence list­
+----------------------------------------------------
+
+#include <map>
+#include <vector>
+#include <iostream>
+using namespace std;
+//An incidence list representation of a graph. 
+//Written by Victoria Wu, 10/2
+
+struct edge	{
+	string x; string y; int w;	//connecting point X, Y, with weight w
+	edge (string xx, string yy, int dd) :x(xx), y(yy), w(dd) {}
+};
+
+void addEdge(string v1, string v2, int weight, map< string, vector<edge*> > &g)	{
+		edge* tmp = new edge(v1,v2,weight);
+
+		g[v1].push_back(tmp);
+		g[v2].push_back(tmp);
+}
+
+int main()	{
+	
+	map< string, vector<edge*> > graph;
+	map< string, vector<edge*> > ::iterator it;
+	vector<edge*> :: iterator neigh;
+
+	addEdge("1", "2" , 5, graph);	
+	addEdge("1", "3", 3, graph);
+	addEdge("2", "3", 2, graph);
+	addEdge("3", "4", 4, graph);
+
+	//printing out the incidence list
+	for(it = graph.begin(); it!= graph.end(); it++)
+	{
+		//print out the key
+		cout << "[" << it->first  << "]"<< " has edges:"<<endl;
+		
+		//Print out the edges
+		
+		for(neigh = it->second.begin(); neigh != it->second.end(); neigh++)
+		{
+			cout << " connecting (" << (**neigh).x << "," << (**neigh).y <<")" 
+			<< " weight " << (**neigh).w << endl;
+		}
+		
+		cout << endl;
+	}
+	
+}
