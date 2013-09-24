@@ -1,0 +1,58 @@
+Dynamic Programming
+Taught by Professor Hare
+9/13/13 Week 3
+UMKC ACM programming practices
+
+
+Fibonachi Sequence
+	Trying to implement directly not a good idea.
+	Repeating work. Lots of lots of recursive calls as n goes bigger…
+Recursion can be good - ie, quicksort/mergesort. BUT, work is NOT repeated. 
+Memoization
+	Fibonachi - manually plug in first two numbers in array. Then calculate rest, and SAVE for later reference, so you won’t have to keep resolving it. 
+
+	
+Example Problem #1 - Cell Hops
+	Square grid. Size n, n <= 200
+	Inside every cell is a positive, single digit integer (1-9) in no particular order. 
+	Start in top left, end in bottom right. 
+	Numbers in cell tell you where you can “go” - can only move down and right, not up and left. 
+	You want to end up at the bottom right corner, don’t go past the edges.
+	How many distinct paths are there to the bottom right corner following these rules?
+		1 min to count. 40000  data sets to test on. -> Recursion will NOT be able to finish in time, obvious solution is too slow. 
+		Explicitly generate possible paths? No. 
+		How many ways to get to that particular cell, is how many ways it took to get to previous cell + 1
+Solution…
+	Set up a table of the same size. 
+	FIll with zeros. Each cell, is a counter of how many ways to reach that particular cell. 
+	First cell has a one. There’s only one way to start at the beginning. 
+	You can go right, and down - increase those counts by one (there’s one more way to get there). 
+	For each cell:
+		find destination
+		add cell count + 1 to destination
+		
+		
+Example Problem #2 - Coins Game
+	Problem: 
+		2 players. Each player on their turn takes a coin from the ends. At the end, whoever has most value of coins wins.
+		Greedy won't work. 
+			5 - 25 - 10- 1 -> If I grab 5, opponent will grab 25. 
+		
+		If for each game, players play their best, who will win and with how much?
+	Naive Solution:
+		Do this recursively. Steps are not independent -> what opponent does depends on what YOU do
+	
+	Math:
+		Expectation(C1 . C2 . C3 ... Cn) = max (C1 - E(C2 C3.. Cn) , Cn - E (C1 C2 ... Cn-1) )
+		The expectation of a game C1... Cn is the MAX of 2 possible ways:
+			C1 - E(C2 C3.. Cn) 		-> I take left coin, and minus what the opponent takes of what's left.
+			Cn - E (C1 C2 ... Cn-1) -> I take right coin, and minus what the opponent takes of what's left.
+		
+	Representation:
+		Hash map time! Need to have equality + comparison operators. 
+		No need to keep track of person, because this map is tracking the expectation of a game without caring about who goes next. 
+		Solely keeps track of whoever turn it is, how their best choice would turn out.
+		KEY: Game state. Or, first and last subscript. 
+		VALUE: E(X) -Expectation of this game state. 
+		
+	
