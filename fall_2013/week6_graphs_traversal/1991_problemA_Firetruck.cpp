@@ -1,6 +1,7 @@
 /**
 1991 ACM ICPC Finals 
 Problem A Firetruck
+http://www.karrels.org/Ed/ACM/91/prob_a.html
 
 Algorithm-ed by: Marvin Bellamy, Tony Sommer
 Written by Victoria Wu 
