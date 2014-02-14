@@ -1,0 +1,3 @@
+-go over basics of prog comp format
+-go over psuedocode
+-delicious delicious problems... split up and solve
