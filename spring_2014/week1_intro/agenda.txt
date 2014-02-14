@@ -1,3 +1,5 @@
 -go over basics of prog comp format
 -go over psuedocode
 -delicious delicious problems... split up and solve
+  -clock hands - http://www.karrels.org/Ed/ACM/ec97/prob_2.html
+  -prime factors - http://www.karrels.org/Ed/ACM/ec97/prob_6.html
