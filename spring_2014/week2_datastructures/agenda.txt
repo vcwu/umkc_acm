@@ -1,0 +1,5 @@
+agenda
+-go over basic data structures
+-split and do problems
+	-Ecological Bin Packing - http://uva.onlinejudge.org/external/1/102.pdf
+	-Grandpa's other estate - http://acm.hit.edu.cn/hoj/problem/view?id=1019
